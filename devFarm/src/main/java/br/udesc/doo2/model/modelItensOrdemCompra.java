@@ -8,6 +8,12 @@ package br.udesc.doo2.model;
  *
  * @author Marcos
  */
-public class NewClass {
+class modelItensOrdemCompra {
     
+    
+    private int codigo;
+    private modelInsumo insumo;
+    private int quantidade;
+    private float valor;
+    private float total;
 }
