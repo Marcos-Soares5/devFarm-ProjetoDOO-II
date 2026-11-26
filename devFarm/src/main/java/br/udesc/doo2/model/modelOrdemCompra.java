@@ -12,19 +12,18 @@ import java.util.List;
  *
  * @author Marcos
  */
-public class modelOrdemCompra {
+public class ModelOrdemCompra {
     
     private int codigo;
     private String dataCriacao;
     private String fornecedor;
     private String status;
-    private float valorTotal;
     
-    private static List<modelItensOrdemCompra> itens = new ArrayList<>();
+    private static List<ModelItensOrdemCompra> insumo = new ArrayList<>();
 
     private static int codigoGerador=0;
     
-    public modelOrdemCompra(String dataCriacao, String fornecedor, String status) {
+    public ModelOrdemCompra(String dataCriacao, String fornecedor, String status) {
         this.dataCriacao = dataCriacao;
         this.fornecedor = fornecedor;
         this.status = status;
@@ -40,7 +39,7 @@ public class modelOrdemCompra {
         this.status = status;
     }
 
-    public List<modelItensOrdemCompra> 
+//    public List<ModelItensOrdemCompra> getInsumo
     
     
     

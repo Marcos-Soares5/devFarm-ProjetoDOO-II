@@ -276,7 +276,7 @@ public class ViewManterMedicamentos extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<ModelMedicamento> cbListaMedicamentos;
+    private javax.swing.JComboBox<String> cbListaMedicamentos;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

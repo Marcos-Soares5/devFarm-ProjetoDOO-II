@@ -8,14 +8,14 @@ package br.udesc.doo2.view;
  *
  * @author Marcos
  */
-public class viewManterOrdemCompras extends javax.swing.JFrame {
+public class ViewManterOrdemCompras extends javax.swing.JFrame {
     
-    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(viewManterOrdemCompras.class.getName());
+    private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(ViewManterOrdemCompras.class.getName());
 
     /**
      * Creates new form viewManterOrdemCompras
      */
-    public viewManterOrdemCompras() {
+    public ViewManterOrdemCompras() {
         initComponents();
     }
 
@@ -60,6 +60,7 @@ public class viewManterOrdemCompras extends javax.swing.JFrame {
         txtTotal = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblInsumosDetalhes = new javax.swing.JTable();
+        bntExcluirDetalhe = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -195,10 +196,11 @@ public class viewManterOrdemCompras extends javax.swing.JFrame {
             pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnlFormularioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lbFornecedor)
-                    .addComponent(lbStatusDetalhe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(lbData))
+                .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lbStatusDetalhe, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(lbFornecedor)
+                        .addComponent(lbData)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlFormularioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtFornecedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -220,6 +222,8 @@ public class viewManterOrdemCompras extends javax.swing.JFrame {
         bntAdicionarItem.setText("Adicionar Item");
 
         lbTotal.setText("Total");
+
+        txtTotal.setEnabled(false);
 
         tblInsumosDetalhes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -281,6 +285,8 @@ public class viewManterOrdemCompras extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
+        bntExcluirDetalhe.setText("Excluir");
+
         javax.swing.GroupLayout pnlDetalheLayout = new javax.swing.GroupLayout(pnlDetalhe);
         pnlDetalhe.setLayout(pnlDetalheLayout);
         pnlDetalheLayout.setHorizontalGroup(
@@ -291,9 +297,11 @@ public class viewManterOrdemCompras extends javax.swing.JFrame {
                     .addComponent(pnlItens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(pnlDetalheLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(btnVoltar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(bntSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnVoltar))
+                        .addComponent(bntExcluirDetalhe))
                     .addComponent(pnlFormulario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -305,9 +313,10 @@ public class viewManterOrdemCompras extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(pnlItens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(pnlDetalheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnVoltar)
-                    .addComponent(bntSalvar))
+                .addGroup(pnlDetalheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(bntSalvar)
+                    .addComponent(bntExcluirDetalhe)
+                    .addComponent(btnVoltar))
                 .addGap(25, 25, 25))
         );
 
@@ -354,11 +363,12 @@ public class viewManterOrdemCompras extends javax.swing.JFrame {
         //</editor-fold>
 
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new viewManterOrdemCompras().setVisible(true));
+        java.awt.EventQueue.invokeLater(() -> new ViewManterOrdemCompras().setVisible(true));
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bntAdicionarItem;
+    private javax.swing.JButton bntExcluirDetalhe;
     private javax.swing.JButton bntSalvar;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;

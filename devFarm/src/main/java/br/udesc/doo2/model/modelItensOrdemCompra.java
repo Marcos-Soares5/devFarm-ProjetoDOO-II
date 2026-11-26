@@ -8,12 +8,45 @@ package br.udesc.doo2.model;
  *
  * @author Marcos
  */
-class modelItensOrdemCompra {
+class ModelItensOrdemCompra {
     
     
     private int codigo;
-    private modelInsumo insumo;
+    private ModelInsumo insumo;
     private int quantidade;
-    private float valor;
-    private float total;
+    private float precoInsumo;
+    private float valorTotal;
+    
+    private static int geradorCodigo=0;
+
+    public ModelItensOrdemCompra(ModelInsumo insumo, int quantidade, float precoInsumo) {
+        this.insumo = insumo;
+        this.quantidade = quantidade;
+        this.precoInsumo = precoInsumo;
+        
+        this.valorTotal = quantidade * precoInsumo;
+        
+        this.codigo = ++geradorCodigo;
+    }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public ModelInsumo getInsumo() {
+        return insumo;
+    }
+
+    public int getQuantidade() {
+        return quantidade;
+    }
+
+    public float getValorTotal() {
+        return valorTotal;
+    }
+    
+    
+    
+    
+    
 }
