@@ -58,6 +58,9 @@
   </Layout>
   <SubComponents>
     <Container class="javax.swing.JTabbedPane" name="tabPrincipal">
+      <Properties>
+        <Property name="focusable" type="boolean" value="false"/>
+      </Properties>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -158,7 +161,6 @@
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="0"/>
                     </Property>
-                    <Property name="selectedIndex" type="int" value="-1"/>
                   </Properties>
                   <AuxValues>
                     <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;StatusOrdemCompras&gt;"/>
@@ -211,7 +213,9 @@
         </Container>
         <Container class="javax.swing.JPanel" name="pnlDetalhe">
           <Properties>
-            <Property name="enabled" type="boolean" value="false"/>
+            <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
+              <Color id="Cursor Padr&#xe3;o"/>
+            </Property>
           </Properties>
           <Constraints>
             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">

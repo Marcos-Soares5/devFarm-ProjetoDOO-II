@@ -83,11 +83,11 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        tabPrincipal.setFocusable(false);
+
         pnlListagem.setName("Listagem"); // NOI18N
 
         lbStatus.setText("Status");
-
-        cbFiltro.setSelectedIndex(-1);
 
         btnBuscar.setText("Buscar");
 
@@ -171,7 +171,7 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
 
         tabPrincipal.addTab("Listagem", pnlListagem);
 
-        pnlDetalhe.setEnabled(false);
+        pnlDetalhe.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 
         lbFornecedor.setText("Fornecedor");
 
@@ -348,29 +348,7 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
-            logger.log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(() -> new ViewManterOrdemCompras().setVisible(true));
-        
-       
-    }
+  
     
     //geral
     
@@ -378,7 +356,16 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
         setVisible(apresentar);
     }
     
+    
     //Listagem
+    
+    public void exibirListagem(boolean apresentar){
+        tabPrincipal.setSelectedComponent(pnlListagem);
+    }
+    
+    public void enableListagem(boolean enable){
+        tabPrincipal.setEnabledAt(tabPrincipal.indexOfComponent(pnlListagem), enable);
+    }
     
     public void inicializarCbFiltro(){
         cbFiltro.removeAllItems();
@@ -394,21 +381,36 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
     
     //acoes botoes
     
-    public void addBtnBuscar(ActionListener acao){
+    public void addAcaoBtnBuscar(ActionListener acao){
         btnBuscar.addActionListener(acao);
     }
     
-    public void addBtnEditar(ActionListener acao){
+    public void addAcaoBtnEditar(ActionListener acao){
         btnEditar.addActionListener(acao);
     }
     
-    public void addBtnExcluir(ActionListener acao){
+    public void addAcaoBtnExcluir(ActionListener acao){
         btnExcluir.addActionListener(acao);
+    }
+    
+    public void addAcaoBtnNovo(ActionListener acao){
+        btnNovo.addActionListener(acao);
     }
     
     
     //Detalhes
     
+    public void exibirDetalhes(boolean apresentar){
+        if (apresentar) {
+            tabPrincipal.setSelectedComponent(pnlDetalhe);
+        } else {
+            tabPrincipal.setSelectedComponent(pnlListagem);
+        }
+    }
+    
+    public void enableDetalhe(boolean enable){
+        tabPrincipal.setEnabledAt(tabPrincipal.indexOfComponent(pnlDetalhe), enable);
+    }
     //gets
     
     public String getFornecedor(){
@@ -446,19 +448,19 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
     }
     
     //acoes botoes
-    public void addBtnAdicionarItem(ActionListener acao){
+    public void addAcaoBtnAdicionarItem(ActionListener acao){
         btnAdicionarItem.addActionListener(acao);
     }
     
-    public void addBtnExcluirDetalhe(ActionListener acao){
+    public void addAcaoBtnExcluirDetalhe(ActionListener acao){
         btnExcluirDetalhe.addActionListener(acao);
     }
     
-    public void addBtnSalvar(ActionListener acao){
+    public void addAcaoBtnSalvar(ActionListener acao){
         btnSalvar.addActionListener(acao);
     }
      
-    public void addBtnVoltar(ActionListener acao){
+    public void addAcaoBtnVoltar(ActionListener acao){
         btnVoltar.addActionListener(acao);
     }
 

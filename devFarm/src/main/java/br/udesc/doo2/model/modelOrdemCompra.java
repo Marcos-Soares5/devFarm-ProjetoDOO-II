@@ -23,11 +23,10 @@ public class ModelOrdemCompra {
 
     private static int codigoGerador=0;
     
-    public ModelOrdemCompra(String dataCriacao, String fornecedor) {
+    public ModelOrdemCompra(String dataCriacao, String fornecedor, StatusOrdemCompras status) {
         this.dataCriacao = dataCriacao;
         this.fornecedor = fornecedor;
-        this.status = status.PENDENTE;
-        
+        this.status = status;
         this.codigo = ++codigoGerador;
     }
 

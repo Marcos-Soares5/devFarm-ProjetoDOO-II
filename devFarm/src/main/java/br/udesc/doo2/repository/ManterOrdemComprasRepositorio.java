@@ -4,10 +4,18 @@
  */
 package br.udesc.doo2.repository;
 
+import br.udesc.doo2.model.ModelOrdemCompra;
+import java.util.List;
+
 /**
  *
  * @author Marcos
  */
-public class ManterOrdemComprasRepositorio {
+public interface ManterOrdemComprasRepositorio {
     
+    public boolean salvarOrdemCompras(ModelOrdemCompra oc);
+    
+    public List<ModelOrdemCompra> buscaTodasOrdemCompras();
+    
+    public boolean deleteOrdemCompra(ModelOrdemCompra oc);
 }
