@@ -17,16 +17,16 @@ public class ModelOrdemCompra {
     private int codigo;
     private String dataCriacao;
     private String fornecedor;
-    private String status;
+    private StatusOrdemCompras status;
     
     private static List<ModelItensOrdemCompra> insumo = new ArrayList<>();
 
     private static int codigoGerador=0;
     
-    public ModelOrdemCompra(String dataCriacao, String fornecedor, String status) {
+    public ModelOrdemCompra(String dataCriacao, String fornecedor) {
         this.dataCriacao = dataCriacao;
         this.fornecedor = fornecedor;
-        this.status = status;
+        this.status = status.PENDENTE;
         
         this.codigo = ++codigoGerador;
     }
@@ -35,11 +35,13 @@ public class ModelOrdemCompra {
         this.fornecedor = fornecedor;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(StatusOrdemCompras status) {
         this.status = status;
     }
-
-//    public List<ModelItensOrdemCompra> getInsumo
+    
+    public StatusOrdemCompras getStatus() {
+        return this.status;
+    }
     
     
     

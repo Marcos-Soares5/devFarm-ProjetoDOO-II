@@ -4,6 +4,11 @@
  */
 package br.udesc.doo2.view;
 
+import br.udesc.doo2.model.ModelInsumo;
+import br.udesc.doo2.model.StatusOrdemCompras;
+import java.awt.event.ActionListener;
+import java.util.List;
+
 /**
  *
  * @author Marcos
@@ -17,6 +22,9 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
      */
     public ViewManterOrdemCompras() {
         initComponents();
+        
+        inicializarCbFiltro();
+        inicializaCbStatusDetalhe();
     }
 
     /**
@@ -49,18 +57,18 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
         lbStatusDetalhe = new javax.swing.JLabel();
         cbStatusDetalhe = new javax.swing.JComboBox<>();
         btnVoltar = new javax.swing.JButton();
-        bntSalvar = new javax.swing.JButton();
+        btnSalvar = new javax.swing.JButton();
         pnlItens = new javax.swing.JPanel();
         lbInsumo = new javax.swing.JLabel();
         cbInsumo = new javax.swing.JComboBox<>();
         lbQuantidade = new javax.swing.JLabel();
         spQuantidade = new javax.swing.JSpinner();
-        bntAdicionarItem = new javax.swing.JButton();
+        btnAdicionarItem = new javax.swing.JButton();
         lbTotal = new javax.swing.JLabel();
         txtTotal = new javax.swing.JTextField();
         jScrollPane2 = new javax.swing.JScrollPane();
         tblInsumosDetalhes = new javax.swing.JTable();
-        bntExcluirDetalhe = new javax.swing.JButton();
+        btnExcluirDetalhe = new javax.swing.JButton();
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -79,7 +87,7 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
 
         lbStatus.setText("Status");
 
-        cbFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        cbFiltro.setSelectedIndex(-1);
 
         btnBuscar.setText("Buscar");
 
@@ -171,8 +179,6 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
 
         lbStatusDetalhe.setText("Status");
 
-        cbStatusDetalhe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         javax.swing.GroupLayout pnlFormularioLayout = new javax.swing.GroupLayout(pnlFormulario);
         pnlFormulario.setLayout(pnlFormularioLayout);
         pnlFormularioLayout.setHorizontalGroup(
@@ -211,15 +217,13 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
 
         btnVoltar.setText("Voltar");
 
-        bntSalvar.setText("Salvar");
+        btnSalvar.setText("Salvar");
 
         lbInsumo.setText("Insumo");
 
-        cbInsumo.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
-
         lbQuantidade.setText("Quantidade");
 
-        bntAdicionarItem.setText("Adicionar Item");
+        btnAdicionarItem.setText("Adicionar Item");
 
         lbTotal.setText("Total");
 
@@ -261,7 +265,7 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 89, Short.MAX_VALUE)
                         .addGroup(pnlItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtTotal, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(bntAdicionarItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnAdicionarItem, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap())
         );
         pnlItensLayout.setVerticalGroup(
@@ -275,7 +279,7 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
                 .addGroup(pnlItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbInsumo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bntAdicionarItem))
+                    .addComponent(btnAdicionarItem))
                 .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 236, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -285,7 +289,7 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
                 .addGap(28, 28, 28))
         );
 
-        bntExcluirDetalhe.setText("Excluir");
+        btnExcluirDetalhe.setText("Excluir");
 
         javax.swing.GroupLayout pnlDetalheLayout = new javax.swing.GroupLayout(pnlDetalhe);
         pnlDetalhe.setLayout(pnlDetalheLayout);
@@ -299,9 +303,9 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(btnVoltar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntSalvar)
+                        .addComponent(btnSalvar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bntExcluirDetalhe))
+                        .addComponent(btnExcluirDetalhe))
                     .addComponent(pnlFormulario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -314,8 +318,8 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
                 .addComponent(pnlItens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(pnlDetalheLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bntSalvar)
-                    .addComponent(bntExcluirDetalhe)
+                    .addComponent(btnSalvar)
+                    .addComponent(btnExcluirDetalhe)
                     .addComponent(btnVoltar))
                 .addGap(25, 25, 25))
         );
@@ -364,20 +368,112 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(() -> new ViewManterOrdemCompras().setVisible(true));
+        
+       
+    }
+    
+    //geral
+    
+    public void exibirTela(boolean apresentar){
+        setVisible(apresentar);
+    }
+    
+    //Listagem
+    
+    public void inicializarCbFiltro(){
+        cbFiltro.removeAllItems();
+        
+        for (StatusOrdemCompras s : StatusOrdemCompras.values()){
+            cbFiltro.addItem(s);
+        }
+    }
+    
+    public StatusOrdemCompras getCbFiltro(){
+        return (StatusOrdemCompras) cbFiltro.getSelectedItem();
+    }
+    
+    //acoes botoes
+    
+    public void addBtnBuscar(ActionListener acao){
+        btnBuscar.addActionListener(acao);
+    }
+    
+    public void addBtnEditar(ActionListener acao){
+        btnEditar.addActionListener(acao);
+    }
+    
+    public void addBtnExcluir(ActionListener acao){
+        btnExcluir.addActionListener(acao);
+    }
+    
+    
+    //Detalhes
+    
+    //gets
+    
+    public String getFornecedor(){
+        return txtFornecedor.getText();
+    }
+    
+    public String getData(){
+        return txtData.getText();
+    }
+    
+    public StatusOrdemCompras getStatusDetalhe(){
+        return (StatusOrdemCompras) cbStatusDetalhe.getSelectedItem();
+    }
+    
+    public ModelInsumo getInsumo(){
+        return (ModelInsumo) cbInsumo.getSelectedItem();
+    }
+    
+    public int getQuantidade(){
+        return (Integer) spQuantidade.getValue();
+    }
+    
+    //sets
+    
+    public void inicializaCbStatusDetalhe(){
+        cbStatusDetalhe.addItem(StatusOrdemCompras.PENDENTE);
+        cbStatusDetalhe.addItem(StatusOrdemCompras.FINALIZADO);
+    }
+    
+    public void inicializaCbInsumo(List<ModelInsumo> insumos){
+        
+        for (ModelInsumo insumo : insumos){
+            cbInsumo.addItem(insumo);
+        }
+    }
+    
+    //acoes botoes
+    public void addBtnAdicionarItem(ActionListener acao){
+        btnAdicionarItem.addActionListener(acao);
+    }
+    
+    public void addBtnExcluirDetalhe(ActionListener acao){
+        btnExcluirDetalhe.addActionListener(acao);
+    }
+    
+    public void addBtnSalvar(ActionListener acao){
+        btnSalvar.addActionListener(acao);
+    }
+     
+    public void addBtnVoltar(ActionListener acao){
+        btnVoltar.addActionListener(acao);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton bntAdicionarItem;
-    private javax.swing.JButton bntExcluirDetalhe;
-    private javax.swing.JButton bntSalvar;
+    private javax.swing.JButton btnAdicionarItem;
     private javax.swing.JButton btnBuscar;
     private javax.swing.JButton btnEditar;
     private javax.swing.JButton btnExcluir;
+    private javax.swing.JButton btnExcluirDetalhe;
     private javax.swing.JButton btnNovo;
+    private javax.swing.JButton btnSalvar;
     private javax.swing.JButton btnVoltar;
-    private javax.swing.JComboBox<String> cbFiltro;
-    private javax.swing.JComboBox<String> cbInsumo;
-    private javax.swing.JComboBox<String> cbStatusDetalhe;
+    private javax.swing.JComboBox<StatusOrdemCompras> cbFiltro;
+    private javax.swing.JComboBox<ModelInsumo> cbInsumo;
+    private javax.swing.JComboBox<StatusOrdemCompras> cbStatusDetalhe;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
