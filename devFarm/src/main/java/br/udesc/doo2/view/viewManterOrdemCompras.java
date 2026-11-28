@@ -463,6 +463,18 @@ public class ViewManterOrdemCompras extends javax.swing.JFrame {
     public void addAcaoBtnVoltar(ActionListener acao){
         btnVoltar.addActionListener(acao);
     }
+    
+    public void setDateDetalhe(String data){
+        txtData.setText(data);
+    }
+    
+    public void setFornecedor (String forncedor){
+        txtFornecedor.setText(forncedor);
+    }
+    
+    public void setCbStatusDetalhe(StatusOrdemCompras status){
+        cbStatusDetalhe.setSelectedItem(status);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdicionarItem;

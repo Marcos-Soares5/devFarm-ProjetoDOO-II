@@ -41,6 +41,24 @@ public class ModelOrdemCompra {
     public StatusOrdemCompras getStatus() {
         return this.status;
     }
+
+    public int getCodigo() {
+        return codigo;
+    }
+
+    public String getDataCriacao() {
+        return dataCriacao;
+    }
+
+    public String getFornecedor() {
+        return fornecedor;
+    }
+
+    public static List<ModelItensOrdemCompra> getInsumo() {
+        return insumo;
+    }
+    
+    
     
     
     
